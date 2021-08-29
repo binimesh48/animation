@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Music Equalizer Effect</title>
+    <style>
+        body {
+            margin: 0;
+        }
+
+        .container {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #e9e4ee;
+            border-color: #0c6a96;
+            border-width: 2rem;
+        }
+
+        .equalizer {
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            height: 300px;
+            width: 700px;
+            background-color: #04163b;
+            padding: 0.1rem;
+            border-style: solid;
+            border-width: 0.8rem;
+            border-color: #04163b;
+        }
+
+        .bar {
+            display: inline-block;
+            width: 170px;
+            background-color: #6ab85b;
+            margin: 0 0.1rem;
+        }
+
+        .bar {
+            display: inline-block;
+            width: 170px;
+            background-color: #d11a14;
+            margin: 0 0.1rem;
+        }
+
+        .bar {
+            display: inline-block;
+            width: 170px;
+            background-color: #0c6a96;
+            margin: 0 0.1rem;
+        }
+
+        .bar {
+            display: inline-block;
+            width: 170px;
+            background-color: #da19da;
+            margin: 0 0.1rem;
+        }
+
+        .bar {
+            display: inline-block;
+            width: 170px;
+            background-color: #ebe70b;
+            margin: 0 0.1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="equalizer">
+            <div id="bar1" data-animation="Stop" class="bar"></div>
+            <div id="bar2" data-animation="Stop" class="bar"></div>
+            <div id="bar3" data-animation="Stop" class="bar"></div>
+            <div id="bar4" data-animation="Stop" class="bar"></div>
+            <div id="bar5" data-animation="Stop" class="bar"></div>
+            <!-- <div id="bar6" class="bar"></div>
+                <div id="bar7" class="bar"></div>
+                <div id="bar8" class="bar"></div> -->
+        </div>
+        <script>
+            var x = document.getElementById("bar");
+
+            function playAudio() {
+                x.play();
+            }
+
+            function pauseAudio() {
+                x.pause();
+            }
+            animate(document.getElementById('bar1'), [230, 250, 310, 150]);
+            animate(document.getElementById('bar2'), [50, 150, 100, 230]);
+            animate(document.getElementById('bar3'), [280, 200, 250, 100]);
+            animate(document.getElementById('bar4'), [265, 145, 215, 95]);
+            animate(document.getElementById('bar5'), [75, 115, 80, 225]);
+            // animate(document.getElementById('bar6'), [175, 45, 195, 115]);
+            // animate(document.getElementById('bar7'), [215, 145, 300, 95]);
+            // animate(document.getElementById('bar8'), [55, 345, 145, 250]);
+
+            function animate(element, heights) {
+                let currentHeight = 0;
+                let loop = 0;
+
+                setInterval(function () {
+                    if (currentHeight === heights[loop]) {
+                        loop++;
+
+                        if (!heights[loop]) {
+                            loop = 0;
+                        }
+                    } else {
+                        if (currentHeight > heights[loop]) {
+                            currentHeight--;
+                        } else {
+                            currentHeight++;
+                        }
+
+                        element.style.height = currentHeight + 'px';
+                    }
+                }, 5);
+            }
+        </script>
+        <button onclick="playAudio()" type="button">Play Audio</button>
+        <button onclick="pauseAudio()" type="button">Pause Audio</button> 
+    </div>
+
+</body>
+
+</html>
